@@ -1,0 +1,15 @@
+rule all:
+	input:
+		expand("refs/{ref_type}.fa",
+			ref_type=["Ref_GRCh38","Ref_GRCh38_Y_HardMasked","Ref_GRCh38_Y_PARsMasked"])
+
+rule prep_refs_mk_sy_ln:
+	input:
+		ref = lambda wildcards: config["genome_paths"][wildcards.ref_type]
+	output:
+		ref_sy_ln = "refs/{ref_type}.fa",
+	priority:110
+	shell:
+		"""
+		ln -s {input.ref} {output.ref_sy_ln}
+		"""

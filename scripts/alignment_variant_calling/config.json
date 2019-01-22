@@ -1,0 +1,7 @@
+{
+	"genome_paths": {
+		"Ref_GRCh38": "/mnt/storage/SAYRES/XY_Trim_Ref/references/gencode.GRCh38.p7_wholeGenome/GRCh38_wholeGenome_reference.fa",
+		"Ref_GRCh38_Y_HardMasked": "/mnt/storage/SAYRES/XY_Trim_Ref/references/gencode.GRCh38.p7_Ymasked/GRCh38_Ymasked_reference.fa",
+		"Ref_GRCh38_Y_PARsMasked": "/mnt/storage/SAYRES/XY_Trim_Ref/references/gencode.GRCh38.p7_minusYPARs/GRCh38_minusYPARs_reference.fa"
+	}
+}
