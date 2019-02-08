@@ -29,3 +29,9 @@ wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/709/685/GCA_003709685.1_NA19
 gunzip GCA_003709685.1_NA19240_EEE_SV-Pop.1_genomic.fna.gz
 ```
 
+```
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/002/022/975/GCA_002022975.1_10x.supernova.msNA19240/GCA_002022975.1_10x.supernova.msNA19240_genomic.fna.gz
+
+gunzip GCA_002022975.1_10x.supernova.msNA19240_genomic.fna.gz
+```
+
