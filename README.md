@@ -35,3 +35,13 @@ wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/002/022/975/GCA_002022975.1_10x.
 gunzip GCA_002022975.1_10x.supernova.msNA19240_genomic.fna.gz
 ```
 
+## Variant calling with GATK
+
+* Download GATK version 4.1.0.0
+```
+wget https://github.com/broadinstitute/gatk/releases/download/4.1.0.0/gatk-4.1.0.0.zip
+
+unzip gatk-4.1.0.0.zip
+```
+
+
