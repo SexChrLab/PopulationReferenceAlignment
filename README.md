@@ -44,4 +44,16 @@ wget https://github.com/broadinstitute/gatk/releases/download/4.1.0.0/gatk-4.1.0
 unzip gatk-4.1.0.0.zip
 ```
 
+## Temp analysis
+### 1. Examine statistics from VCF file for chr21, chrX, chrY, and mtDNA
+
+```
+ python ~/softwares/tanya_repos/vcfhelper/extract_stats_from_vcf.py QD FS SOR MQ MQRankSum ReadPosRankSum --vcf ../genotyped_vcfs/chr21.gatk.called.raw.vcf.gz --outfile chr21_prefiltering_annotations.txt
+ 
+ python ~/softwares/tanya_repos/vcfhelper/extract_stats_from_vcf.py QD FS SOR MQ MQRankSum ReadPosRankSum --vcf ../genotyped_vcfs/chrX.gatk.called.raw.vcf.gz --outfile chrX_prefiltering_annotations.txt
+ 
+ python ~/softwares/tanya_repos/vcfhelper/extract_stats_from_vcf.py QD FS SOR MQ MQRankSum ReadPosRankSum --vcf ../genotyped_vcfs/chrM.gatk.called.raw.vcf.gz --outfile chrM_prefiltering_annotations.txt
+ 
+ python ~/softwares/tanya_repos/vcfhelper/extract_stats_from_vcf.py QD FS SOR MQ MQRankSum ReadPosRankSum --vcf ../genotyped_vcfs/chrY.gatk.called.raw.vcf.gz --outfile chrY_prefiltering_annotations.txt
+```
 
