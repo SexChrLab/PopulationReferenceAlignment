@@ -57,3 +57,10 @@ unzip gatk-4.1.0.0.zip
  python ~/softwares/tanya_repos/vcfhelper/extract_stats_from_vcf.py QD FS SOR MQ MQRankSum ReadPosRankSum --vcf ../genotyped_vcfs/chrY.gatk.called.raw.vcf.gz --outfile chrY_prefiltering_annotations.txt
 ```
 
+### 2. Obtain OD for variants that are heterozygous and variants that are homozygous for the alternate allele
+
+```
+python find_het_homalt.py genotyped_vcfs/chrY.gatk.called.raw.vcf.gz temp_analyze_vcf_stats/chrY_hets_QD_pos.txt temp_analyze_vcf_stats/chrY_homoalt_QD_pos.txt
+
+python find_het_homalt.py genotyped_vcfs/chrX.gatk.called.raw.vcf.gz temp_analyze_vcf_stats/chrX_hets_QD_pos.txt temp_analyze_vcf_stats/chrX_homoalt_QD_pos.txt
+```
