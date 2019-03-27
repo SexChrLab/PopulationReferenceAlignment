@@ -44,7 +44,7 @@ wget https://github.com/broadinstitute/gatk/releases/download/4.1.0.0/gatk-4.1.0
 unzip gatk-4.1.0.0.zip
 ```
 
-## Temp analysis
+## Temp analysis (This is for internal purposes)
 ### 1. Examine statistics from VCF file for chr21, chrX, chrY, and mtDNA
 
 ```
@@ -69,4 +69,37 @@ python find_het_homalt.py genotyped_vcfs/chrY.gatk.called.raw.vcf.gz temp_analyz
 python extract_annotation.py genotyped_vcfs/chrY.gatk.called.raw.vcf.gz QD temp_analyze_vcf_stats/chrY_all_QD.txt
 python extract_annotation.py genotyped_vcfs/chrY.gatk.called.raw.vcf.gz DP temp_analyze_vcf_stats/chrY_all_DP.txt
 python extract_annotation.py genotyped_vcfs/chrY.gatk.called.raw.vcf.gz MQ temp_analyze_vcf_stats/chrY_all_MQ.txt
+```
+
+### 4. Examine annotations for chrX for XY individuals
+
+1. Subset the VCF file to include XY individuals
+```
+bcftools view -s A10_whole_genome,A100_whole_genome,A18_whole_genome,A21_whole_genome,A22_whole_genome,A23_whole_genome,A24_whole_genome,A25_whole_genome,A32_whole_genome,A34_whole_genome genotyped_vcfs/chrX.gatk.called.raw.vcf.gz > temp_analyze_vcf_stats/chrX.gatk.called.raw.males.vcf.gz
+```
+
+2. Extract and plot QD, DP, MQ for all of the variants
+
+```
+python extract_annotation.py temp_analyze_vcf_stats/chrX.gatk.called.raw.males.vcf.gz QD temp_analyze_vcf_stats/chrX_males_all_QD.txt
+python extract_annotation.py temp_analyze_vcf_stats/chrX.gatk.called.raw.males.vcf.gz DP temp_analyze_vcf_stats/chrX_males_all_DP.txt
+python extract_annotation.py temp_analyze_vcf_stats/chrX.gatk.called.raw.males.vcf.gz MQ temp_analyze_vcf_stats/chrX_males_all_MQ.txt
+```
+
+3. Extract and plot QD, DP, MQ for variants that are heterozygous and variants that are homozygous for the alternate allele
+
+```
+python find_het_homoalt_extract_annotation.py temp_analyze_vcf_stats/chrX.gatk.called.raw.males.vcf.gz QD temp_analyze_vcf_stats/chrX_males_hets_QD.txt temp_analyze_vcf_stats/chrX_males_homo_QD.txt
+
+python find_het_homoalt_extract_annotation.py temp_analyze_vcf_stats/chrX.gatk.called.raw.males.vcf.gz DP temp_analyze_vcf_stats/chrX_males_hets_DP.txt temp_analyze_vcf_stats/chrX_males_homo_DP.txt
+
+python find_het_homoalt_extract_annotation.py temp_analyze_vcf_stats/chrX.gatk.called.raw.males.vcf.gz MQ temp_analyze_vcf_stats/chrX_males_hets_MQ.txt temp_analyze_vcf_stats/chrX_males_homo_MQ.txt
+```
+
+### 4. Examine annotations for chrY for XY individuals
+
+```
+for anno in QD DP MQ; do
+python extract_annotation.py genotyped_vcfs/chrY.gatk.called.raw.vcf.gz ${anno} temp_analyze_vcf_stats/chrY_all_${anno}.txt
+done;
 ```
