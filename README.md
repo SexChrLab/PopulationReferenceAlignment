@@ -103,3 +103,9 @@ for anno in QD DP MQ; do
 python extract_annotation.py genotyped_vcfs/chrY.gatk.called.raw.vcf.gz ${anno} temp_analyze_vcf_stats/chrY_all_${anno}.txt
 done;
 ```
+
+```
+for anno in QD DP MQ; do
+python find_het_homoalt_extract_annotation.py genotyped_vcfs/chrY.gatk.called.raw.vcf.gz ${anno} temp_analyze_vcf_stats/chrY_hets_${anno}.txt temp_analyze_vcf_stats/chrY_homo_${anno}.txt
+done;
+```
