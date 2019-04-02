@@ -118,3 +118,38 @@ done;
 #### b. VQSR for chr22 (pilot)
 * Download data for VQSR from https://software.broadinstitute.org/gatk/download/bundle
 
+#### c. 
+* For the array VCF file, subset for 20 individuals and remove sites that are homozygous reference
+
+```
+bcftools view -s A2,A3,A11,A13,A16,A17,A27,A29,A30,A31,A10,A100,A18,A21,A22,A23,A24,A25,A32,A34 chr22_array.vcf > chr22_array_20.individuals.vcf
+python remove_homozygous_reference.py ../data/chr22_array_20.individuals.vcf ../data/chr22_array_20.individuals_rmhomoref.vcf
+```
+
+* Obtain sites from VCF for Venn diagram:
+
+```
+python extract_snp_from_vcf.py ../data/chr22_array_20.individuals_rmhomoref.vcf ../results/chr22_array_snps.txt
+python extract_snp_from_vcf.py ../data/chr22.gatk.called.raw_fixheader_gatk.rec.hardfilter_selectvariant.vcf ../results/chr22_gatk.hard.filter_snps.txt
+python extract_snp_from_vcf.py ../results/vqsr/chr22.gatk.called.raw_vqsr_sv.vcf ../results/chr22_vqsr_snps.txt
+python extract_snp_from_vcf.py ../data/chr22.gatk.called.raw.vcf ../results/chr22_before.filtering_snps.txt
+```
+
+- Then, plot Venn diagram (PopulationReferenceAlignment/compare_hardfilter_vqsr/scripts/plot_venn.R)
+
+* Obtain the number of variants where the genotypes are the same between array and wholegenome:
+
+```
+bcftools view -s A2,A3,A11,A13,A16,A17,A27,A29,A30,A31,A10,A100,A18,A21,A22,A23,A24,A25,A32,A34 chr22.gatk.called.raw_fixheader.vcf > chr22.gatk.called.raw_fixheader_fixorder.vcf
+python check_genotype_concordance.py
+```
+
+* SFS
+
+```
+python ~/softwares/tanya_repos/popgen_tools/popgen_tools.py --vcf_file ../../data/chr22_array_20.individuals.vcf --sfs_all --sfs_all_out chr22_array_20.individuals_sfs.out
+python ~/softwares/tanya_repos/popgen_tools/popgen_tools.py --vcf_file ../../data/chr22.gatk.called.raw.vcf --sfs_all --sfs_all_out chr22_before.filtering_sfs.out
+python ~/softwares/tanya_repos/popgen_tools/popgen_tools.py --vcf_file ../../data/chr22.gatk.called.raw_fixheader_gatk.rec.hardfilter_selectvariant.vcf --sfs_all --sfs_all_out chr22_hard.filtering_sfs.out
+python ~/softwares/tanya_repos/popgen_tools/popgen_tools.py --vcf_file ../vqsr/chr22.gatk.called.raw_vqsr_sv.vcf --sfs_all --sfs_all_out chr22_vqsr_sfs.out
+```
+ - Plot (PopulationReferenceAlignment/compare_hardfilter_vqsr/scripts/compare_sfs.R)
