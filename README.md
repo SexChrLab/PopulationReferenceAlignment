@@ -177,3 +177,14 @@ sed -i 's/chr22KI270879v1_alt/chr22/g' chr22_array_positions_GRCh38_fmtchr_fix.b
 ```
 python check_genotype_concordance_per_individual.py
 ```
+
+#### SFS
+* Goal is to compare singleton when restricting to sites only in array vs not
+
+```
+python ~/softwares/tanya_repos/popgen_tools/popgen_tools.py --vcf_file ../../data/chr22.gatk.called.raw_fixheader_array.vcf --sfs_all --sfs_all_out chr22_before.filtering_array_sfs.out 
+
+python ~/softwares/tanya_repos/popgen_tools/popgen_tools.py --vcf_file ../../data/chr22.gatk.called.raw_fixheader_gatk.rec.hardfilter_array.vcf --sfs_all --sfs_all_out chr22_hard.filtering_array_sfs.out
+
+ python ~/softwares/tanya_repos/popgen_tools/popgen_tools.py --vcf_file ../../data/chr22.gatk.called.raw_vqsr_sv_fixheader_array.vcf --sfs_all --sfs_all_out chr22_vqsr_array_sfs.out
+```
