@@ -153,3 +153,27 @@ python ~/softwares/tanya_repos/popgen_tools/popgen_tools.py --vcf_file ../../dat
 python ~/softwares/tanya_repos/popgen_tools/popgen_tools.py --vcf_file ../vqsr/chr22.gatk.called.raw_vqsr_sv.vcf --sfs_all --sfs_all_out chr22_vqsr_sfs.out
 ```
  - Plot (PopulationReferenceAlignment/compare_hardfilter_vqsr/scripts/compare_sfs.R)
+
+### Restricting whole genome VCF to contain sites that are used in the array
+
+#### Identify sites in the array
+```
+sed 's/chr22_/chr22/g' chr22_array_positions_GRCh38_fmtchr.bed > chr22_array_positions_GRCh38_fmtchrf_ix.bed
+sed -i 's/chr22KI270879v1_alt/chr22/g' chr22_array_positions_GRCh38_fmtchr_fix.bed
+```
+
+#### Subset whole genome VCF to contain only sites that are in the array
+```
+./select_variants_in_array.sh
+```
+
+#### Subset array-VCF and wholegenome-VCF per individual
+```
+./subset_vcf_per_individual.sh
+```
+
+#### Concordance per individual
+
+```
+python check_genotype_concordance_per_individual.py
+```
