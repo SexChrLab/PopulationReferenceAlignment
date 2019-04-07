@@ -174,9 +174,7 @@ sed -i 's/chr22KI270879v1_alt/chr22/g' chr22_array_positions_GRCh38_fmtchr_fix.b
 
 #### Concordance per individual
 
-```
-python check_genotype_concordance_per_individual.py
-```
+* Use python script `check_genotype_concordance_per_individual.py`. See wrapper script `wrapper_check.genotype.concordance.per.individual.sh`.
 
 #### SFS
 * Goal is to compare singleton when restricting to sites only in array vs not
