@@ -154,7 +154,7 @@ python ~/softwares/tanya_repos/popgen_tools/popgen_tools.py --vcf_file ../vqsr/c
 ```
  - Plot (PopulationReferenceAlignment/compare_hardfilter_vqsr/scripts/compare_sfs.R)
 
-### Restricting whole genome VCF to contain sites that are used in the array
+### 6. Restricting whole genome VCF to contain sites that are used in the array
 
 #### Identify sites in the array
 ```
