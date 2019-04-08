@@ -186,3 +186,7 @@ python ~/softwares/tanya_repos/popgen_tools/popgen_tools.py --vcf_file ../../dat
 
  python ~/softwares/tanya_repos/popgen_tools/popgen_tools.py --vcf_file ../../data/chr22.gatk.called.raw_vqsr_sv_fixheader_array.vcf --sfs_all --sfs_all_out chr22_vqsr_array_sfs.out
 ```
+
+### 7. For chrX and chrY in XY individuals that were genotyped using the haploid option, calculate and plot read balance
+* We want to do this per individual
+* Step 1: Use bcftools to subset per individual
