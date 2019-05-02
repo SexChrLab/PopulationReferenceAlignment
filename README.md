@@ -187,6 +187,16 @@ python ~/softwares/tanya_repos/popgen_tools/popgen_tools.py --vcf_file ../../dat
  python ~/softwares/tanya_repos/popgen_tools/popgen_tools.py --vcf_file ../../data/chr22.gatk.called.raw_vqsr_sv_fixheader_array.vcf --sfs_all --sfs_all_out chr22_vqsr_array_sfs.out
 ```
 
+#### Concordance analysis
+* Date: 05/02 (Use the VCF file for array that has been fixed by Emma)
+* Since the VCF file for array by Emma only contain 10 female individual, I will subset my whole genome VCF file for these individuals. 
+
+```
+bcftools view -s A2,A3,A11,A13,A16,A17,A27,A29,A30,A31 chr22.gatk.called.raw_fixheader_array.vcf > chr22.gatk.called.raw_fixheader_array_females.vcf
+```
+
+* Run the script `snparray_wholegenome_concordance.sh`.
+
 ### 7. For chrX and chrY in XY individuals that were genotyped using the haploid option, calculate and plot read balance
 * We want to do this per individual
 * Step 1: Use bcftools to subset per individual
