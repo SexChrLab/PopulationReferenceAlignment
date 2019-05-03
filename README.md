@@ -44,7 +44,46 @@ wget https://github.com/broadinstitute/gatk/releases/download/4.1.0.0/gatk-4.1.0
 unzip gatk-4.1.0.0.zip
 ```
 
-## Temp analysis (This is for internal purposes)
+## Calculating genotype concordance and allelic concordance
+
+* Use the script `process_gatkconcordance_output.py`.
+
+```
+python process_gatkconcordance_output.py -h
+usage: process_gatkconcordance_output.py [-h] --gatk_concordance
+                                         GATK_CONCORDANCE --num_indiv
+                                         NUM_INDIV --count_out COUNT_OUT
+                                         --genotype_concordance_out
+                                         GENOTYPE_CONCORDANCE_OUT
+                                         --allelic_concordance_out
+                                         ALLELIC_CONCORDANCE_OUT
+
+This script processes output from GATK Genotype Concordance an returns a file
+with genotype concordance and a file with allelic concordance for each
+individual
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --gatk_concordance GATK_CONCORDANCE
+                        REQUIRED. Input the path to the GATK Genotype
+                        Concordance output.
+  --num_indiv NUM_INDIV
+                        REQUIRED. Input the number of individuals you have.
+  --count_out COUNT_OUT
+                        Required. This is the output that lists the counts.
+  --genotype_concordance_out GENOTYPE_CONCORDANCE_OUT
+                        Required. This is the output for genotype concordance
+  --allelic_concordance_out ALLELIC_CONCORDANCE_OUT
+                        Required. This is the output for genotype concordance
+```
+
+* Example: 
+
+```
+process_gatkconcordance_output.py --gatk_concordance chr22_snparray_wholegenome_concordance_array_females.tsv --num_indiv 10 --count_out out_count --genotype_concordance_out out_genotype --allelic_concordance_out out_allele
+```
+
+## Temp analysis
 ### 1. Examine statistics from VCF file for chr21, chrX, chrY, and mtDNA
 
 ```
