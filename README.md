@@ -90,6 +90,10 @@ process_gatkconcordance_output.py --gatk_concordance chr22_snparray_wholegenome_
 #### Step 1. Combine chr1 to chr22 to make an autosomes file
 * Use the script `cat_variants.sh` (in `PopulationReferenceAlignment/analyses/compare_joint_single/scripts`).
 
+#### Step 2. Count the number of variants
+* In each of the following category: autosomes, chrX_diploid (for females), chrX_haploid (for males), and chrY_haploid (for males). 
+* Use the script `count_num_variants.sh` (in `PopulationReferenceAlignment/analyses/compare_joint_single/scripts`).
+
 ## Temp analysis
 ### 1. Examine statistics from VCF file for chr21, chrX, chrY, and mtDNA
 
