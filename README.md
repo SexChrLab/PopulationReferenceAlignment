@@ -83,6 +83,13 @@ optional arguments:
 process_gatkconcordance_output.py --gatk_concordance chr22_snparray_wholegenome_concordance_array_females.tsv --num_indiv 10 --count_out out_count --genotype_concordance_out out_genotype --allelic_concordance_out out_allele
 ```
 
+## Compare between joint calling and single sample calling
+* Directory is in `PopulationReferenceAlignment/analyses/compare_joint_single`.
+
+### Single sample
+#### Step 1. Combine chr1 to chr22 to make an autosomes file
+* Use the script `cat_variants.sh` (in `PopulationReferenceAlignment/analyses/compare_joint_single/scripts`).
+
 ## Temp analysis
 ### 1. Examine statistics from VCF file for chr21, chrX, chrY, and mtDNA
 
