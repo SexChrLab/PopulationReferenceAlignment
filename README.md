@@ -8,6 +8,10 @@ Align 10 females to Yoruban reference genome
 * 10 females sample names: A2, A3, A11, A13, A16, A17, A27, A29, A30, A31
 * 10 males sample names: A10, A100, A18, A21, A22, A23, A24, A25, A32, A34
 
+## README for manuscript
+### PART B. Workflow for filtering variants for diploid chromosomes
+#### 1. Compare number of variants between raw, VQSR, hard-filter, and custom-filter
+
 ## Download the Yoruban assembly:
 
 * ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/709/685/GCA_003709685.1_NA19240_EEE_SV-Pop.1
