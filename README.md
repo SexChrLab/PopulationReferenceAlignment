@@ -9,7 +9,15 @@ Align 10 females to Yoruban reference genome
 * 10 males sample names: A10, A100, A18, A21, A22, A23, A24, A25, A32, A34
 
 ## README for manuscript
-### PART B. Workflow for filtering variants for diploid chromosomes
+
+### B. Pre-filter to obtain sites that are high in quality
+1. Use XYalign to obtain sites that are high in quality from the bam files
+- Use XYalign's default parameters to obtain sites that are high in quality: a minimum quality of 30 (SNP), genotype quality of 30 (SNP), variant depth of 4 (SNP), and mapping quality of 20 (bam window).
+- NOTES: I could not install both xyalign and snakemake in the same conda environment. Therefore, I ran the xyalign command using a batch script in an xyalign enviroment. See script `analyses/obtain_high_qual_sites_xyalign/scripts/run_xyalign_batch1.sh`. 
+
+- Intersect the bed files for all 20 samples: `./bedtools_intersect.sh`.
+
+### C. Genotyping on the autosomes
 #### 1. Compare number of variants between raw, VQSR, hard-filter, and custom-filter
 
 ## Download the Yoruban assembly:
