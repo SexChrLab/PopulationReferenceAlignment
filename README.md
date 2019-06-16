@@ -15,7 +15,29 @@ Align 10 females to Yoruban reference genome
 - Use XYalign's default parameters to obtain sites that are high in quality: a minimum quality of 30 (SNP), genotype quality of 30 (SNP), variant depth of 4 (SNP), and mapping quality of 20 (bam window).
 - NOTES: I could not install both xyalign and snakemake in the same conda environment. Therefore, I ran the xyalign command using a batch script in an xyalign enviroment. See script `analyses/obtain_high_qual_sites_xyalign/scripts/run_xyalign_batch1.sh`. 
 
-- Intersect the bed files for all 20 samples: `./bedtools_intersect.sh`.
+- Intersect the bed files: `./bedtools_intersect.sh`. We intersect 10 females and 10 males separately
+- Partition: Females (autosomes and chrX). Males (autosomes, chrX, and chrY)
+```
+grep chrX A11_A13_A16_A17_A27_A29_A2_A30_A31_A3_highquality_preprocessing_sort.bed > A11_A13_A16_A17_A27_A29_A2_A30_A31_A3_highquality_preprocessing_sort_chrX.bed
+
+grep -v chrX A11_A13_A16_A17_A27_A29_A2_A30_A31_A3_highquality_preprocessing_sort.bed > A11_A13_A16_A17_A27_A29_A2_A30_A31_A3_highquality_preprocessing_sort_autosomes.bed
+
+grep chrX A10_A100_A18_A21_A22_A23_A24_A25_A32_A34_highquality_preprocessing_sort.bed > A10_A100_A18_A21_A22_A23_A24_A25_A32_A34_highquality_preprocessing_sort_chrX.bed
+
+grep chrY A10_A100_A18_A21_A22_A23_A24_A25_A32_A34_highquality_preprocessing_sort.bed > A10_A100_A18_A21_A22_A23_A24_A25_A32_A34_highquality_preprocessing_sort_chrY.bed
+
+grep -v chrX A10_A100_A18_A21_A22_A23_A24_A25_A32_A34_highquality_preprocessing_sort.bed | grep -v chrY >  A10_A100_A18_A21_A22_A23_A24_A25_A32_A34_highquality_preprocessing_sort_autosomes.bed
+```
+
+2. Investigate the effect of pre-filter on nucleotide diversity
+- Females: autosomes and X chromosome
+- Males: autosomes, X chromosome, and Y chromosome
+a. Subset VCF file to variants that are overlapping with the high quality regions
+- Use the script `select_variants_in_highqual.sh`.
+b. Calculate pi:
+```
+for i in {1..22}; do python ~/softwares/tanya_repos/popgen_tools/popgen_tools.py --vcf_file chr${i}.gatk.called.raw.females_highqual.vcf.gz --pi --pi_all; done;
+```
 
 ### C. Genotyping on the autosomes
 #### 1. Compare number of variants between raw, VQSR, hard-filter, and custom-filter
